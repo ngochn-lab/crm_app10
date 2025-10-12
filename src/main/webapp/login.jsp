@@ -15,16 +15,25 @@
     <div class="col-md-5 m-auto mt-5">
       <h3 class="text-center">ĐĂNG NHẬP HỆ THỐNG</h3>
       <div class="p-4 border mt-4">
+        <% if(request.getAttribute("errorMessage") != null) { %>
+          <div class="alert alert-danger" role="alert">
+            <%= request.getAttribute("errorMessage") %>
+          </div>
+        <% } %>
         <form action="login" method="post">
             <div class="form-group">
               <label>Email</label>
-              <input type="email" class="form-control" name="email">
+              <input type="email" class="form-control" name="email" value="${email}" required>
             </div>
             <div class="form-group">
               <label>Mật khẩu</label>
-              <input type="password" class="form-control" name="password">
+              <input type="password" class="form-control" name="password" value="${password}" required>
             </div>
-            <button type="submit" class="btn btn-primary">Đăng nhập</button>
+            <div class="form-check mb-3">
+              <input type="checkbox" class="form-check-input" id="remember" name="remember">
+              <label class="form-check-label" for="remember">Nhớ tài khoản</label>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Đăng nhập</button>
           </form>
       </div>
       </div>

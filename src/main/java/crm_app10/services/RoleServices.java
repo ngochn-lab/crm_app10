@@ -12,4 +12,20 @@ public class RoleServices {
 	public List<Roles> getAllRoles() {
 		return roleRepository.findAll();
 	}
+	
+	public boolean insertRole(String name, String desc) {
+		return roleRepository.save(name, desc) > 0;
+	}
+	
+	public boolean updateRole(int id, String name, String desc) {
+		return roleRepository.update(id, name, desc) > 0;
+	}
+	
+	public boolean deleteRole(int id) {
+		return roleRepository.delete(id) > 0;
+	}
+	
+	public Roles getRoleById(int id) {
+		return roleRepository.findById(id);
+	}
 }

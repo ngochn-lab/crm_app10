@@ -11,7 +11,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" type="image/png" sizes="16x16" href="plugins/images/favicon.png">
-    <title>Pixel Admin</title>
+    <title>Pixel Admin - Dự án</title>
     <!-- Bootstrap Core CSS -->
     <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Menu CSS -->
@@ -24,12 +24,6 @@
     <!-- color CSS -->
     <link href="css/colors/blue-dark.css" id="theme" rel="stylesheet">
     <link rel="stylesheet" href="./css/custom.css">
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-<![endif]-->
 </head>
 
 <body>
@@ -48,10 +42,13 @@
             <div class="container-fluid">
                 <div class="row bg-title">
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <h4 class="page-title">Danh sách thành viên</h4>
+                        <h4 class="page-title">Danh sách dự án</h4>
                     </div>
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12 text-right">
-                        <a href="user-add.html" class="btn btn-sm btn-success">Thêm mới</a>
+                        <!-- ADMIN và LEADER có thể thêm dự án -->
+                        <c:if test="${sessionScope.roleId == 1 || sessionScope.roleId == 2}">
+                            <a href="${pageContext.request.contextPath}/groupwork-add" class="btn btn-sm btn-success">Thêm mới</a>
+                        </c:if>
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
@@ -64,28 +61,31 @@
                                     <thead>
                                         <tr>
                                             <th>STT</th>
-                                            <th>First Name</th>
-                                            <th>Last Name</th>
-                                            <th>Username</th>
-                                            <th>Role</th>
-                                            <th>#</th>
+                                            <th>Tên Dự Án</th>
+                                            <th>Ngày Bắt Đầu</th>
+                                            <th>Ngày Kết Thúc</th>
+                                            <th>Người Quản Lý</th>
+                                            <th>Hành Động</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    	<c:forEach items="${listUser}" var="item">
-	                                    	 <tr>
-	                                            <td>${item.id}</td>
-	                                            <td>${item.fullname}</td>
-	                                            <td></td>
-	                                            <td>${item.email}</td>
-	                                            <td>${item.roleDescription}</td>
-	                                            <td>
-	                                                <a href="#" class="btn btn-sm btn-primary">Sửa</a>
-	                                                <a href="user-delete?id=${item.id}" class="btn btn-sm btn-danger">Xóa</a>
-	                                                <a href="user-details.html" class="btn btn-sm btn-info">Xem</a>
-	                                            </td>
-	                                        </tr>
-                                    	</c:forEach>
+                                        <c:forEach var="project" items="${listProjects}" varStatus="loop">
+                                            <tr>
+                                                <td>${loop.index + 1}</td>
+                                                <td>${project.name}</td>
+                                                <td>${project.startDate}</td>
+                                                <td>${project.endDate}</td>
+                                                <td>${project.userFullname}</td>
+                                                <td>
+                                                    <a href="${pageContext.request.contextPath}/groupwork-details?id=${project.id}" class="btn btn-sm btn-info">Xem</a>
+                                                    <!-- ADMIN và LEADER có thể sửa/xóa dự án -->
+                                                    <c:if test="${sessionScope.roleId == 1 || sessionScope.roleId == 2}">
+                                                        <a href="${pageContext.request.contextPath}/groupwork-edit?id=${project.id}" class="btn btn-sm btn-primary">Sửa</a>
+                                                        <a href="${pageContext.request.contextPath}/groupwork-delete?id=${project.id}" class="btn btn-sm btn-danger" onclick="return confirm('Bạn có chắc muốn xóa dự án này?')">Xóa</a>
+                                                    </c:if>
+                                                </td>
+                                            </tr>
+                                        </c:forEach>
                                     </tbody>
                                 </table>
                             </div>
@@ -108,7 +108,7 @@
     <script src="plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js"></script>
     <!--slimscroll JavaScript -->
     <script src="js/jquery.slimscroll.js"></script>
-    <script src="js/jquery.dataTables.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
     <!--Wave Effects -->
     <script src="js/waves.js"></script>
     <!-- Custom Theme JavaScript -->

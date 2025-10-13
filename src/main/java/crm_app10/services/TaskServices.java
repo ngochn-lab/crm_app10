@@ -39,6 +39,10 @@ public class TaskServices {
         return taskRepository.findByProjectId(projectId);
     }
     
+    public List<Tasks> getTasksByLeaderId(int leaderId) {
+        return taskRepository.findByLeaderId(leaderId);
+    }
+    
     public boolean updateTaskStatus(int taskId, int statusId) {
         return taskRepository.updateStatus(taskId, statusId) > 0;
     }

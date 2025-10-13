@@ -50,7 +50,7 @@
                     <div class="col-md-8 col-xs-12">
                         <div class="white-box">
                             <form class="form-horizontal form-material" method="post" 
-                                  action="${pageContext.request.contextPath}/${task != null ? 'task-edit' : 'task-add'}">
+                                  action="${task != null ? 'task-edit' : 'task-add'}">
                                 <c:if test="${task != null}">
                                     <input type="hidden" name="id" value="${task.id}">
                                 </c:if>
@@ -132,7 +132,7 @@
                                         <button type="submit" class="btn btn-success">
                                             ${task != null ? 'Cập nhật' : 'Thêm mới'}
                                         </button>
-                                        <a href="${pageContext.request.contextPath}/task" class="btn btn-primary">Quay lại</a>
+                                        <a href="task" class="btn btn-primary">Quay lại</a>
                                     </div>
                                 </div>
                             </form>

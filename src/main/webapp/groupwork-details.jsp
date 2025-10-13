@@ -46,8 +46,8 @@
                     </div>
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                         <ol class="breadcrumb">
-                            <li><a href="${pageContext.request.contextPath}/dashboard">Dashboard</a></li>
-                            <li><a href="${pageContext.request.contextPath}/groupwork">Danh sách dự án</a></li>
+                            <li><a href="dashboard">Dashboard</a></li>
+                            <li><a href="groupwork">Danh sách dự án</a></li>
                             <li class="active">Chi tiết</li>
                         </ol>
                     </div>
@@ -188,7 +188,7 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <a href="${pageContext.request.contextPath}/groupwork" class="btn btn-primary">Quay lại</a>
+                            <a href="groupwork" class="btn btn-primary">Quay lại</a>
                         </div>
                     </div>
                 </div>

@@ -81,7 +81,7 @@ public class TaskController extends HttpServlet {
         if (roleId == 1) { // ADMIN - xem tất cả task
             listTasks = taskServices.getAllTasks();
         } else if (roleId == 2) { // LEADER - xem task của dự án mình quản lý
-            listTasks = taskServices.getAllTasks(); // TODO: Filter by projects managed
+            listTasks = taskServices.getTasksByLeaderId(userId);
         } else { // USER - chỉ xem task của mình
             listTasks = taskServices.getTasksByUserId(userId);
         }

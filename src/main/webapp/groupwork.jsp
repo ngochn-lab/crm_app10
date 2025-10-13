@@ -47,7 +47,7 @@
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12 text-right">
                         <!-- ADMIN và LEADER có thể thêm dự án -->
                         <c:if test="${sessionScope.roleId == 1 || sessionScope.roleId == 2}">
-                            <a href="${pageContext.request.contextPath}/groupwork-add" class="btn btn-sm btn-success">Thêm mới</a>
+                            <a href="groupwork-add" class="btn btn-sm btn-success">Thêm mới</a>
                         </c:if>
                     </div>
                     <!-- /.col-lg-12 -->
@@ -77,11 +77,11 @@
                                                 <td>${project.endDate}</td>
                                                 <td>${project.userFullname}</td>
                                                 <td>
-                                                    <a href="${pageContext.request.contextPath}/groupwork-details?id=${project.id}" class="btn btn-sm btn-info">Xem</a>
+                                                    <a href="groupwork-details?id=${project.id}" class="btn btn-sm btn-info">Xem</a>
                                                     <!-- ADMIN và LEADER có thể sửa/xóa dự án -->
                                                     <c:if test="${sessionScope.roleId == 1 || sessionScope.roleId == 2}">
-                                                        <a href="${pageContext.request.contextPath}/groupwork-edit?id=${project.id}" class="btn btn-sm btn-primary">Sửa</a>
-                                                        <a href="${pageContext.request.contextPath}/groupwork-delete?id=${project.id}" class="btn btn-sm btn-danger" onclick="return confirm('Bạn có chắc muốn xóa dự án này?')">Xóa</a>
+                                                        <a href="groupwork-edit?id=${project.id}" class="btn btn-sm btn-primary">Sửa</a>
+                                                        <a href="groupwork-delete?id=${project.id}" class="btn btn-sm btn-danger" onclick="return confirm('Bạn có chắc muốn xóa dự án này?')">Xóa</a>
                                                     </c:if>
                                                 </td>
                                             </tr>

@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import crm_app10.services.ProjectServices;
 import crm_app10.services.TaskServices;
@@ -68,7 +69,18 @@ public class ProjectController extends HttpServlet {
     }
     
     private void showProjectList(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Projects> listProjects = projectServices.getAllProjects();
+    	HttpSession session = req.getSession();
+    	Integer userId = (Integer) session.getAttribute("userId");
+        Integer roleId = (Integer) session.getAttribute("roleId");
+        
+        List<Projects> listProjects;
+        
+        if (roleId == 1) {
+        	listProjects = projectServices.getAllProjects();
+        } else {
+        	listProjects = projectServices.getProjectsByUserId(userId);
+        }
+        
         req.setAttribute("listProjects", listProjects);
         req.getRequestDispatcher("groupwork.jsp").forward(req, resp);
     }

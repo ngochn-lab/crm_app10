@@ -50,7 +50,7 @@
                     <div class="col-md-8 col-xs-12">
                         <div class="white-box">
                             <form class="form-horizontal form-material" method="post" 
-                                  action="${pageContext.request.contextPath}/${project != null ? 'groupwork-edit' : 'groupwork-add'}">
+                                  action="${project != null ? 'groupwork-edit' : 'groupwork-add'}">
                                 <c:if test="${project != null}">
                                     <input type="hidden" name="id" value="${project.id}">
                                 </c:if>
@@ -104,7 +104,7 @@
                                         <button type="submit" class="btn btn-success">
                                             ${project != null ? 'Cập nhật' : 'Thêm mới'}
                                         </button>
-                                        <a href="${pageContext.request.contextPath}/groupwork" class="btn btn-primary">Quay lại</a>
+                                        <a href="groupwork" class="btn btn-primary">Quay lại</a>
                                     </div>
                                 </div>
                             </form>

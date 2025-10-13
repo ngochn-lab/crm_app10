@@ -94,6 +94,7 @@
                                             <th>Ngày Bắt Đầu</th>
                                             <th>Ngày Kết Thúc</th>
                                             <th>Trạng Thái</th>
+                                            <th>Hành Động</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -120,12 +121,19 @@
                                                         </c:otherwise>
                                                     </c:choose>
                                                 </td>
+                                                <td>
+                                                    <select class="form-control form-control-sm" onchange="updateTaskStatus(${task.id}, this.value)">
+                                                        <option value="1" ${task.statusId == 1 ? 'selected' : ''}>Chưa thực hiện</option>
+                                                        <option value="2" ${task.statusId == 2 ? 'selected' : ''}>Đang thực hiện</option>
+                                                        <option value="3" ${task.statusId == 3 ? 'selected' : ''}>Đã hoàn thành</option>
+                                                    </select>
+                                                </td>
                                             </tr>
                                         </c:forEach>
                                     </tbody>
                                 </table>
                             </div>
-                            <a href="${pageContext.request.contextPath}/profile-edit" class="btn btn-primary">Chỉnh sửa thông tin</a>
+                            <a href="profile-edit" class="btn btn-primary">Chỉnh sửa thông tin</a>
                         </div>
                     </div>
                 </div>
@@ -149,6 +157,16 @@
     <script src="js/waves.js"></script>
     <!-- Custom Theme JavaScript -->
     <script src="js/custom.min.js"></script>
+    <script>
+        function updateTaskStatus(taskId, statusId) {
+            $.post('${pageContext.request.contextPath}/task-update-status', {
+                taskId: taskId,
+                statusId: statusId
+            }, function(data) {
+                location.reload();
+            });
+        }
+    </script>
 </body>
 
 </html>

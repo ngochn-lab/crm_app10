@@ -50,7 +50,7 @@
                     <div class="col-md-8 col-xs-12">
                         <div class="white-box">
                             <form class="form-horizontal form-material" method="post" 
-                                  action="${pageContext.request.contextPath}/profile-edit">
+                                  action="profile-edit">
                                 
                                 <div class="form-group">
                                     <label class="col-md-12">Họ tên</label>
@@ -125,7 +125,7 @@
                                 <div class="form-group">
                                     <div class="col-sm-12">
                                         <button type="submit" class="btn btn-success">Cập nhật</button>
-                                        <a href="${pageContext.request.contextPath}/profile" class="btn btn-primary">Quay lại</a>
+                                        <a href="profile" class="btn btn-primary">Quay lại</a>
                                     </div>
                                 </div>
                             </form>

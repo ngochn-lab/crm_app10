@@ -47,6 +47,45 @@ public class TaskRepository {
         
         return listTasks;
     }
+
+    public List<Tasks> findByLeaderId(int leaderId) {
+        List<Tasks> listTasks = new ArrayList<>();
+        String query = "SELECT t.*, u.fullname as user_fullname, u.email as user_email, " +
+                      "p.name as project_name, s.name as status_name " +
+                      "FROM tasks t " +
+                      "LEFT JOIN users u ON t.user_id = u.id " +
+                      "LEFT JOIN projects p ON t.project_id = p.id " +
+                      "LEFT JOIN status s ON t.status_id = s.id " +
+                      "WHERE p.user_id = ?";
+
+        Connection connection = MySQLConfig.getConnection();
+
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, leaderId);
+            ResultSet resultSet = statement.executeQuery();
+
+            while(resultSet.next()) {
+                Tasks task = new Tasks();
+                task.setId(resultSet.getInt("id"));
+                task.setName(resultSet.getString("name"));
+                task.setStartDate(resultSet.getString("start_date"));
+                task.setEndDate(resultSet.getString("end_date"));
+                task.setUserId(resultSet.getInt("user_id"));
+                task.setProjectId(resultSet.getInt("project_id"));
+                task.setStatusId(resultSet.getInt("status_id"));
+                task.setUserFullname(resultSet.getString("user_fullname"));
+                task.setUserName(resultSet.getString("user_email"));
+                task.setProjectName(resultSet.getString("project_name"));
+                task.setStatusName(resultSet.getString("status_name"));
+                listTasks.add(task);
+            }
+        } catch (Exception e) {
+            System.out.println("Error findByLeaderId Tasks: " + e.getMessage());
+        }
+
+        return listTasks;
+    }
     
     public Tasks findById(int id) {
         Tasks task = null;

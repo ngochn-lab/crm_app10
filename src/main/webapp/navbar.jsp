@@ -7,7 +7,7 @@
             <i class="fa fa-bars"></i>
         </a>
         <div class="top-left-part">
-            <a class="logo" href="${pageContext.request.contextPath}/dashboard">
+            <a class="logo" href="dashboard">
                 <b>
                     <img src="plugins/images/pixeladmin-logo.png" alt="home" />
                 </b>
@@ -35,9 +35,9 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a href="profile">Thông tin cá nhân</a></li>
-                        <li><a href="${pageContext.request.contextPath}/profile">Thống kê công việc</a></li>
+                        <li><a href="profile">Thống kê công việc</a></li>
                         <li class="divider"></li>
-                        <li><a href="${pageContext.request.contextPath}/logout">Đăng xuất</a></li>
+                        <li><a href="logout">Đăng xuất</a></li>
                     </ul>
                 </div>
             </li>

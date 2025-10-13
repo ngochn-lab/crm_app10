@@ -47,7 +47,7 @@
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12 text-right">
                         <!-- Chỉ ADMIN và LEADER có thể thêm task -->
                         <c:if test="${sessionScope.roleId == 1 || sessionScope.roleId == 2}">
-                            <a href="${pageContext.request.contextPath}/task-add" class="btn btn-sm btn-success">Thêm mới</a>
+                            <a href="task-add" class="btn btn-sm btn-success">Thêm mới</a>
                         </c:if>
                     </div>
                     <!-- /.col-lg-12 -->
@@ -98,12 +98,23 @@
                                                 <td>
                                                     <!-- ADMIN và LEADER có thể sửa/xóa task -->
                                                     <c:if test="${sessionScope.roleId == 1 || sessionScope.roleId == 2}">
-                                                        <a href="${pageContext.request.contextPath}/task-edit?id=${task.id}" class="btn btn-sm btn-primary">Sửa</a>
-                                                        <a href="${pageContext.request.contextPath}/task-delete?id=${task.id}" class="btn btn-sm btn-danger" onclick="return confirm('Bạn có chắc muốn xóa công việc này?')">Xóa</a>
+                                                        <a href="task-edit?id=${task.id}" class="btn btn-sm btn-primary">Sửa</a>
+                                                        <a href="task-delete?id=${task.id}" class="btn btn-sm btn-danger" onclick="return confirm('Bạn có chắc muốn xóa công việc này?')">Xóa</a>
                                                     </c:if>
                                                     <!-- USER chỉ có thể xem -->
                                                     <c:if test="${sessionScope.roleId == 3}">
-                                                        <span class="text-muted">Chỉ xem</span>
+                                                        <c:choose>                                
+                                                            <c:when test="${task.userId == sessionScope.userId}">
+                                                                <select class="form-control form-control-sm" onchange="updateTaskStatus(${task.id}, this.value)">
+                                                                    <option value="1" ${task.statusId == 1 ? 'selected' : ''}>Chưa thực hiện</option>
+                                                                    <option value="2" ${task.statusId == 2 ? 'selected' : ''}>Đang thực hiện</option>
+                                                                    <option value="3" ${task.statusId == 3 ? 'selected' : ''}>Đã hoàn thành</option>
+                                                                </select>
+                                                            </c:when>
+                                                            <c:otherwise>
+                                                                <span class="text-muted">Chỉ xem</span>
+                                                            </c:otherwise>
+                                                        </c:choose>
                                                     </c:if>
                                                 </td>
                                             </tr>
@@ -127,7 +138,6 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- Menu Plugin JavaScript -->
-    <script src="plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js"></script>
     <!--slimscroll JavaScript -->
     <script src="js/jquery.slimscroll.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
@@ -139,6 +149,14 @@
         $(document).ready(function () {
             $('#example').DataTable();
         });
+        function updateTaskStatus(taskId, statusId) {
+            $.post('${pageContext.request.contextPath}/task-update-status', {
+                taskId: taskId,
+                statusId: statusId
+            }, function(data) {
+                location.reload();
+            });
+        }
     </script>
 </body>
 

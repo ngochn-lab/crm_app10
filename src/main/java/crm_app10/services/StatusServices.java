@@ -3,7 +3,7 @@ package crm_app10.services;
 import java.util.List;
 
 import crm_app10.repository.StatusRepository;
-import entity.Status;
+import crm_app10.entity.Status;
 
 public class StatusServices {
     

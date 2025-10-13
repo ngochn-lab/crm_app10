@@ -13,9 +13,9 @@ import javax.servlet.http.HttpSession;
 import crm_app10.services.ProjectServices;
 import crm_app10.services.TaskServices;
 import crm_app10.services.UserServices;
-import entity.Projects;
-import entity.Tasks;
-import entity.Users;
+import crm_app10.entity.Projects;
+import crm_app10.entity.Tasks;
+import crm_app10.entity.Users;
 
 @WebServlet(name = "projectController", urlPatterns = {"/groupwork", "/groupwork-add", "/groupwork-details", "/groupwork-delete", "/groupwork-edit"})
 public class ProjectController extends HttpServlet {

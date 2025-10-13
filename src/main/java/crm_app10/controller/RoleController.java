@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import crm_app10.services.RoleServices;
-import entity.Roles;
-import entity.Users;
+import crm_app10.entity.Roles;
+import crm_app10.entity.Users;
 
 @WebServlet(name = "roleController", urlPatterns = {"/role", "/role-table", "/role-add", "/role-edit", "/role-delete"})
 public class RoleController extends HttpServlet{

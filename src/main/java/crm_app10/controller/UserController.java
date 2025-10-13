@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import crm_app10.services.RoleServices;
 import crm_app10.services.UserServices;
-import entity.Roles;
-import entity.Users;
+import crm_app10.entity.Roles;
+import crm_app10.entity.Users;
 
 @WebServlet(name = "userController", urlPatterns = {"/user", "/user-table", "/user-add", "/user-edit", "/user-delete"})
 public class UserController extends HttpServlet{

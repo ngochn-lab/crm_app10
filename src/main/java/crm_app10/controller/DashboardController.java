@@ -10,7 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import crm_app10.services.TaskServices;
-import entity.Tasks;
+import crm_app10.entity.Tasks;
+
 
 @WebServlet(name = "dashboardController", urlPatterns = {"/dashboard", "/"})
 public class DashboardController extends HttpServlet {

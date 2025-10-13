@@ -14,10 +14,10 @@ import crm_app10.services.ProjectServices;
 import crm_app10.services.StatusServices;
 import crm_app10.services.TaskServices;
 import crm_app10.services.UserServices;
-import entity.Projects;
-import entity.Status;
-import entity.Tasks;
-import entity.Users;
+import crm_app10.entity.Projects;
+import crm_app10.entity.Status;
+import crm_app10.entity.Tasks;
+import crm_app10.entity.Users;
 
 @WebServlet(name = "taskController", urlPatterns = {"/task", "/task-add", "/task-edit", "/task-delete", "/task-update-status"})
 public class TaskController extends HttpServlet {

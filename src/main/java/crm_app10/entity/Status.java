@@ -1,4 +1,4 @@
-package entity;
+package crm_app10.entity;
 
 public class Status {
     private int id;

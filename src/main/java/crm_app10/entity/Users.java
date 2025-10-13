@@ -1,4 +1,4 @@
-package entity;
+package crm_app10.entity;
 
 public class Users {
 	private int id;

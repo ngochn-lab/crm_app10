@@ -3,7 +3,7 @@ package crm_app10.services;
 import java.util.List;
 
 import crm_app10.repository.RoleRepository;
-import entity.Roles;
+import crm_app10.entity.Roles;
 
 public class RoleServices {
 	

@@ -1,4 +1,4 @@
-package config;
+package crm_app10.config;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

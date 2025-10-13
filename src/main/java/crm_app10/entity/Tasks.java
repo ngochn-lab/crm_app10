@@ -1,26 +1,33 @@
-package entity;
+package crm_app10.entity;
 
-public class Projects {
+public class Tasks {
     private int id;
     private String name;
     private String startDate;
     private String endDate;
     private int userId;
+    private int projectId;
+    private int statusId;
     
     // Additional fields for joined data
     private String userName;
     private String userFullname;
+    private String projectName;
+    private String statusName;
     
     // Constructors
-    public Projects() {
+    public Tasks() {
     }
     
-    public Projects(int id, String name, String startDate, String endDate, int userId) {
+    public Tasks(int id, String name, String startDate, String endDate, 
+                 int userId, int projectId, int statusId) {
         this.id = id;
         this.name = name;
         this.startDate = startDate;
         this.endDate = endDate;
         this.userId = userId;
+        this.projectId = projectId;
+        this.statusId = statusId;
     }
     
     // Getters and Setters
@@ -64,6 +71,22 @@ public class Projects {
         this.userId = userId;
     }
     
+    public int getProjectId() {
+        return projectId;
+    }
+    
+    public void setProjectId(int projectId) {
+        this.projectId = projectId;
+    }
+    
+    public int getStatusId() {
+        return statusId;
+    }
+    
+    public void setStatusId(int statusId) {
+        this.statusId = statusId;
+    }
+    
     public String getUserName() {
         return userName;
     }
@@ -80,16 +103,36 @@ public class Projects {
         this.userFullname = userFullname;
     }
     
+    public String getProjectName() {
+        return projectName;
+    }
+    
+    public void setProjectName(String projectName) {
+        this.projectName = projectName;
+    }
+    
+    public String getStatusName() {
+        return statusName;
+    }
+    
+    public void setStatusName(String statusName) {
+        this.statusName = statusName;
+    }
+    
     @Override
     public String toString() {
-        return "Projects{" +
+        return "Tasks{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", startDate='" + startDate + '\'' +
                 ", endDate='" + endDate + '\'' +
                 ", userId=" + userId +
+                ", projectId=" + projectId +
+                ", statusId=" + statusId +
                 ", userName='" + userName + '\'' +
                 ", userFullname='" + userFullname + '\'' +
+                ", projectName='" + projectName + '\'' +
+                ", statusName='" + statusName + '\'' +
                 '}';
     }
 }

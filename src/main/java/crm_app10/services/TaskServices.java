@@ -3,7 +3,7 @@ package crm_app10.services;
 import java.util.List;
 
 import crm_app10.repository.TaskRepository;
-import entity.Tasks;
+import crm_app10.entity.Tasks;
 
 public class TaskServices {
     

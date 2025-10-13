@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import crm_app10.services.UserServices;
-import entity.Users;
+import crm_app10.entity.Users;
 
 @WebServlet(name = "loginController", urlPatterns = {"/login"})
 public class LoginController extends HttpServlet {

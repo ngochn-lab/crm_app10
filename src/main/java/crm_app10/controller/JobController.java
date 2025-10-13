@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import crm_app10.services.JobServices;
-import entity.Jobs;
+import crm_app10.entity.Jobs;
 
 @WebServlet(name = "jobController", urlPatterns = {"/job"})
 public class JobController extends HttpServlet {

@@ -6,8 +6,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import config.MySQLConfig;
-import entity.Tasks;
+import crm_app10.config.MySQLConfig;
+import crm_app10.entity.Tasks;
 
 public class TaskRepository {
     

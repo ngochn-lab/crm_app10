@@ -3,7 +3,7 @@ package crm_app10.services;
 import java.util.List;
 
 import crm_app10.repository.JobRepository;
-import entity.Jobs;
+import crm_app10.entity.Jobs;
 
 public class JobServices {
 	

@@ -70,26 +70,36 @@ INSERT INTO roles(name, description) VALUES
 
 -- Insert initial data for status
 INSERT INTO status(name) VALUES 
-    ('Chưa thực hiện'),
-    ('Đang thực hiện'),
-    ('Đã hoàn thành');
+    ('Chưa Thực Hiện'),
+    ('Đang Thực Hiện'),
+    ('Đã Hoàn Thành');
 
 -- Insert sample users (optional - uncomment if needed)
 INSERT INTO users(email, password, fullname, avatar, role_id) VALUES
-    ('admin@gmail.com', '123456', 'Nguyễn Văn Admin', NULL, 1),
-    ('manager@gmail.com', '123456', 'Trần Thị Manager', NULL, 2),
-    ('nguyenvana@gmail.com', '123456', 'Nguyễn Văn A', NULL, 3);
+    ('admin@gmail.com', '123456', 'Quản Trị Hệ Thống', NULL, 1),
+    ('manager1@gmail.com', '123456', 'Quản Lý Dự Án 1', NULL, 2),
+    ('manager2@gmail.com', '123456', 'Quản Lý Dự Án 2', NULL, 2),
+    ('member1@gmail.com', '123456', 'Thành Viên 1', NULL, 3),
+    ('member2@gmail.com', '123456', 'Thành Viên 2', NULL, 3),
+    ('member3@gmail.com', '123456', 'Thành Viên 3', NULL, 3);
 
 -- Insert sample projects (optional - uncomment if needed)
 INSERT INTO projects(name, start_date, end_date, user_id) VALUES
-    ('CRM Application', '2024-01-01', '2024-12-31', 1),
-    ('E-commerce Website', '2024-02-01', '2024-08-31', 2);
+    ('CRM Application', '2025-09-09', '2025-12-31', 1),
+    ('E-commerce Website', '2025-02-01', '2026-08-31', 2),
+    ('Azure Cloud Middleware', '2025-10-20', '2028-08-31', 2);
 
 -- Insert sample tasks (optional - uncomment if needed)
 INSERT INTO tasks(name, start_date, end_date, user_id, project_id, status_id) VALUES
-    ('Database Design', '2024-01-01', '2024-01-15', 3, 1, 3),
-    ('Backend Development', '2024-01-16', '2024-03-31', 3, 1, 2),
-    ('Frontend Development', '2024-02-01', '2024-04-30', 3, 1, 1);
+    ('Database Design', '2025-01-01', '2024-01-15', 3, 1, 3),
+    ('Backend Development', '2025-01-16', '2024-03-31', 3, 1, 2),
+    ('Frontend Development', '2025-02-01', '2024-04-30', 3, 1, 1),
+    ('Database Design', '2025-01-01', '2024-01-15', 3, 2, 3),
+    ('Backend Development', '2025-01-16', '2024-03-31', 3, 2, 2),
+    ('Frontend Development', '2025-02-01', '2024-04-30', 3, 2, 1),
+    ('Database Design', '2025-10-21', '2024-01-15', 3, 3, 3),
+    ('Backend Development', '2025-11-16', '2024-03-31', 3, 3, 2),
+    ('Frontend Development', '2026-01-01', '2024-04-30', 3, 3, 1);
 
 -- Useful queries for testing
 -- SELECT * FROM roles;

@@ -76,10 +76,10 @@ INSERT INTO status(name) VALUES
 
 -- Insert sample users (optional - uncomment if needed)
 INSERT INTO users(email, password, fullname, avatar, role_id) VALUES
-    ('admin@gmail.com', '123456', 'Quản Trị Hệ Thống', NULL, 1),
-    ('manager1@gmail.com', '123456', 'Quản Lý Dự Án 1', NULL, 2),
-    ('manager2@gmail.com', '123456', 'Quản Lý Dự Án 2', NULL, 2),
-    ('member1@gmail.com', '123456', 'Thành Viên 1', NULL, 3),
+    ('admin@gmail.com', '123456', 'Quản Trị Hệ Thống', 'https://gravatar.com/avatar/521c92264476cc8c9289213e9a87a4c4?s=400&d=robohash&r=x', 1),
+    ('manager1@gmail.com', '123456', 'Quản Lý Dự Án 1', 'https://gravatar.com/avatar/e799da9a2398eb8601d0bd3847433fc9?s=400&d=robohash&r=x', 2),
+    ('manager2@gmail.com', '123456', 'Quản Lý Dự Án 2', 'https://gravatar.com/avatar/017f06f6e48b8efb18e87af8df6af767?s=400&d=robohash&r=x', 2),
+    ('member1@gmail.com', '123456', 'Thành Viên 1', 'https://gravatar.com/avatar/bd4976bc09262c06dd86334fd84115a9?s=400&d=robohash&r=x', 3),
     ('member2@gmail.com', '123456', 'Thành Viên 2', NULL, 3),
     ('member3@gmail.com', '123456', 'Thành Viên 3', NULL, 3);
 

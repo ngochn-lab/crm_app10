@@ -57,38 +57,49 @@ public class ProfileController extends HttpServlet {
     }
     
     private void showProfile(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // Get current user ID from cookie
         int userId = getCurrentUserId(req);
-        
-        if (userId > 0) {
-            Users user = userServices.getUserById(userId);
-            List<Tasks> userTasks = taskServices.getTasksByUserId(userId);
-            
-            // Calculate task statistics
-            int notStarted = 0;
-            int inProgress = 0;
-            int completed = 0;
-            
-            for (Tasks task : userTasks) {
-                if (task.getStatusId() == 1) {
-                    notStarted++;
-                } else if (task.getStatusId() == 2) {
-                    inProgress++;
-                } else if (task.getStatusId() == 3) {
-                    completed++;
-                }
-            }
-            
-            req.setAttribute("user", user);
-            req.setAttribute("userTasks", userTasks);
-            req.setAttribute("notStarted", notStarted);
-            req.setAttribute("inProgress", inProgress);
-            req.setAttribute("completed", completed);
-            
-            req.getRequestDispatcher("profile.jsp").forward(req, resp);
-        } else {
+        if (userId <= 0) {
             resp.sendRedirect(req.getContextPath() + "/login");
+            return;
         }
+
+        // Load current user and role
+        Users user = userServices.getUserById(userId);
+        HttpSession session = req.getSession();
+        Integer roleId = (Integer) session.getAttribute("roleId");
+
+        // Choose tasks to display based on role
+        List<Tasks> profileTasks;
+        if (roleId != null && roleId == 1) { // ADMIN: all tasks
+            profileTasks = taskServices.getAllTasks();
+        } else if (roleId != null && roleId == 2) { // LEADER: tasks of projects they manage
+            profileTasks = taskServices.getTasksByLeaderId(userId);
+        } else { // USER: only own tasks
+            profileTasks = taskServices.getTasksByUserId(userId);
+        }
+
+        // Calculate statistics from the selected list
+        int notStarted = 0;
+        int inProgress = 0;
+        int completed = 0;
+        for (Tasks task : profileTasks) {
+            if (task.getStatusId() == 1) {
+                notStarted++;
+            } else if (task.getStatusId() == 2) {
+                inProgress++;
+            } else if (task.getStatusId() == 3) {
+                completed++;
+            }
+        }
+
+        // Bind data for JSP
+        req.setAttribute("user", user);
+        req.setAttribute("userTasks", profileTasks); // reuse existing attribute name used by JSP
+        req.setAttribute("notStarted", notStarted);
+        req.setAttribute("inProgress", inProgress);
+        req.setAttribute("completed", completed);
+
+        req.getRequestDispatcher("profile.jsp").forward(req, resp);
     }
     
     private void showEditProfile(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

@@ -35,7 +35,7 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a href="profile">Thông tin cá nhân</a></li>
-                        <li><a href="profile">Thống kê công việc</a></li>
+                        <li><a href="task">Thống kê công việc</a></li>
                         <li class="divider"></li>
                         <li><a href="logout">Đăng xuất</a></li>
                     </ul>

@@ -9,12 +9,16 @@
                         aria-hidden="true"></i><span class="hide-menu">Dashboard</span></a>
             </li>
             
-            <!-- Menu chỉ cho ADMIN (roleId = 1) -->
-            <c:if test="${sessionScope.roleId == 1}">
+            <!-- Menu: Thành viên - cho ADMIN và LEADER (leader chỉ xem) -->
+            <c:if test="${sessionScope.roleId == 1 || sessionScope.roleId == 2}">
                 <li>
                     <a href="user-table" class="waves-effect"><i class="fa fa-user fa-fw"
                             aria-hidden="true"></i><span class="hide-menu">Thành viên</span></a>
                 </li>
+            </c:if>
+
+            <!-- Menu: Quyền - chỉ cho ADMIN (roleId = 1) -->
+            <c:if test="${sessionScope.roleId == 1}">
                 <li>
                     <a href="role-table" class="waves-effect"><i class="fa fa-modx fa-fw"
                             aria-hidden="true"></i><span class="hide-menu">Quyền</span></a>

@@ -36,7 +36,6 @@ public class AuthorizationFilter implements Filter {
         // Admin only URLs - Quản lý user và role
         Set<Integer> adminOnly = new HashSet<>();
         adminOnly.add(ROLE_ADMIN);
-        URL_PERMISSIONS.put("/user-table", adminOnly);
         URL_PERMISSIONS.put("/user-add", adminOnly);
         URL_PERMISSIONS.put("/user-edit", adminOnly);
         URL_PERMISSIONS.put("/user-delete", adminOnly);
@@ -49,6 +48,7 @@ public class AuthorizationFilter implements Filter {
         Set<Integer> adminAndLeader = new HashSet<>();
         adminAndLeader.add(ROLE_ADMIN);
         adminAndLeader.add(ROLE_LEADER);
+        URL_PERMISSIONS.put("/user-table", adminAndLeader);
         URL_PERMISSIONS.put("/groupwork", adminAndLeader);
         URL_PERMISSIONS.put("/groupwork-add", adminAndLeader);
         URL_PERMISSIONS.put("/groupwork-edit", adminAndLeader);

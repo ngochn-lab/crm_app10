@@ -92,7 +92,17 @@ public class TaskController extends HttpServlet {
     
     private void showAddForm(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<Users> listUsers = userServices.getAllUsers();
-        List<Projects> listProjects = projectServices.getAllProjects();
+        // Restrict projects by role: ADMIN -> all, LEADER -> projects they manage
+        HttpSession session = req.getSession();
+        Integer userId = (Integer) session.getAttribute("userId");
+        Integer roleId = (Integer) session.getAttribute("roleId");
+        List<Projects> listProjects;
+        if (roleId != null && roleId == 1) {
+            listProjects = projectServices.getAllProjects();
+        } else {
+            // LEADER (and any other) -> only projects managed by this user
+            listProjects = projectServices.getProjectsByUserId(userId);
+        }
         List<Status> listStatus = statusServices.getAllStatus();
         
         req.setAttribute("listUsers", listUsers);
@@ -106,7 +116,16 @@ public class TaskController extends HttpServlet {
         if (id != null) {
             Tasks task = taskServices.getTaskById(Integer.parseInt(id));
             List<Users> listUsers = userServices.getAllUsers();
-            List<Projects> listProjects = projectServices.getAllProjects();
+            // Restrict projects by role for editing as well
+            HttpSession session = req.getSession();
+            Integer userId = (Integer) session.getAttribute("userId");
+            Integer roleId = (Integer) session.getAttribute("roleId");
+            List<Projects> listProjects;
+            if (roleId != null && roleId == 1) {
+                listProjects = projectServices.getAllProjects();
+            } else {
+                listProjects = projectServices.getProjectsByUserId(userId);
+            }
             List<Status> listStatus = statusServices.getAllStatus();
             
             req.setAttribute("task", task);

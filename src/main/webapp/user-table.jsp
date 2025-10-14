@@ -51,7 +51,9 @@
                         <h4 class="page-title">Danh sách thành viên</h4>
                     </div>
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12 text-right">
-                        <a href="user-add" class="btn btn-sm btn-success">Thêm mới</a>
+                        <c:if test="${sessionScope.roleId == 1}">
+                            <a href="user-add" class="btn btn-sm btn-success">Thêm mới</a>
+                        </c:if>
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
@@ -66,33 +68,31 @@
                                             <th>STT</th>
                                             <th>First Name</th>
                                             <th>Last Name</th>
-                                            <th>Username</th>
                                             <th>Role</th>
                                             <th>#</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    	<c:forEach items="${listUser}" var="item">
-	                                    	 <tr>
-	                                            <td>${item.id}</td>
-	                                            <td>${item.fullname}</td>
-	                                            <td></td>
-	                                            <td>${item.email}</td>
-	                                            <td>${item.roleDescription}</td>
-	                                            <td>
-	                                                <a href="user-edit?id=${item.id}" class="btn btn-sm btn-primary">Sửa</a>
-	                                                <a href="user-delete?id=${item.id}" class="btn btn-sm btn-danger">Xóa</a>
-	                                                <a href="user-details?id=${item.id}" class="btn btn-sm btn-info">Xem</a>
-	                                            </td>
-	                                        </tr>
-                                    	</c:forEach>
+                                        <c:forEach items="${listUser}" var="item" varStatus="loop">
+                                            <tr>
+                                                <td>${loop.index + 1}</td>
+                                                <td>${item.fullname}</td>
+                                                <td>${item.email}</td>
+                                                <td>${item.roleDescription}</td>
+                                                <td>
+                                                    <c:if test="${sessionScope.roleId == 1}">
+                                                        <a href="user-edit?id=${item.id}" class="btn btn-sm btn-primary">Sửa</a>
+                                                        <a href="user-delete?id=${item.id}" class="btn btn-sm btn-danger" onclick="return confirm('Bạn có chắc muốn xóa thành viên này?')">Xóa</a>
+                                                    </c:if>
+                                                    <a href="user-details?id=${item.id}" class="btn btn-sm btn-info">Xem</a>
+                                                </td>
+                                            </tr>
+                                        </c:forEach>
                                     </tbody>
                                 </table>
                             </div>
-                        </div>
                     </div>
                 </div>
-                <!-- /.row -->
             </div>
             <!-- /.container-fluid -->
             <footer class="footer text-center"> 2018 &copy; myclass.com </footer>

@@ -124,12 +124,39 @@ public class ProjectController extends HttpServlet {
                     completed++;
                 }
             }
-            
+            // Build per-assignee grouping for UI (group header + 3 status columns per assignee)
+            java.util.Map<Integer, Users> assigneeMap = new java.util.LinkedHashMap<>();
+            java.util.Map<Integer, java.util.List<Tasks>> tasksByUserNS = new java.util.HashMap<>();
+            java.util.Map<Integer, java.util.List<Tasks>> tasksByUserIP = new java.util.HashMap<>();
+            java.util.Map<Integer, java.util.List<Tasks>> tasksByUserCP = new java.util.HashMap<>();
+
+            for (Tasks t : projectTasks) {
+                int uid = t.getUserId();
+                // cache user
+                if (!assigneeMap.containsKey(uid)) {
+                    Users u = userServices.getUserById(uid);
+                    if (u != null) assigneeMap.put(uid, u);
+                }
+                // split by status
+                if (t.getStatusId() == 1) {
+                    tasksByUserNS.computeIfAbsent(uid, k -> new java.util.ArrayList<>()).add(t);
+                } else if (t.getStatusId() == 2) {
+                    tasksByUserIP.computeIfAbsent(uid, k -> new java.util.ArrayList<>()).add(t);
+                } else if (t.getStatusId() == 3) {
+                    tasksByUserCP.computeIfAbsent(uid, k -> new java.util.ArrayList<>()).add(t);
+                }
+            }
+            java.util.List<Users> assignees = new java.util.ArrayList<>(assigneeMap.values());
+
             req.setAttribute("project", project);
             req.setAttribute("projectTasks", projectTasks);
             req.setAttribute("notStarted", notStarted);
             req.setAttribute("inProgress", inProgress);
             req.setAttribute("completed", completed);
+            req.setAttribute("assignees", assignees);
+            req.setAttribute("tasksByUserNS", tasksByUserNS);
+            req.setAttribute("tasksByUserIP", tasksByUserIP);
+            req.setAttribute("tasksByUserCP", tasksByUserCP);
             
             req.getRequestDispatcher("groupwork-details.jsp").forward(req, resp);
         } else {

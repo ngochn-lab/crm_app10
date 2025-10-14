@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -54,48 +55,70 @@
                     <!-- /.col-lg-12 -->
                 </div>
                 <!-- .row -->
+                <c:set var="totalTasks" value="${notStarted + inProgress + completed}" />
+                <c:set var="pctNS" value="${totalTasks > 0 ? (notStarted * 100.0) / totalTasks : 0}" />
+                <c:set var="pctIP" value="${totalTasks > 0 ? (inProgress * 100.0) / totalTasks : 0}" />
+                <c:set var="pctCP" value="${totalTasks > 0 ? (completed * 100.0) / totalTasks : 0}" />
+                <fmt:formatNumber value="${pctNS}" maxFractionDigits="0" var="pctNSr"/>
+                <fmt:formatNumber value="${pctIP}" maxFractionDigits="0" var="pctIPr"/>
+                <fmt:formatNumber value="${pctCP}" maxFractionDigits="0" var="pctCPr"/>
                 <div class="row">
-                    <div class="col-lg-4 col-sm-6 col-md-6 col-xs-12">
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                         <div class="white-box">
-                            <h3 class="box-title">CHƯA BẮT ĐẦU</h3>
-                            <div class="text-right">
-                                <h2><sup><i class="ti-arrow-down text-danger"></i></sup> ${notStarted}</h2>
-                            </div>
-                            <div class="progress m-b-0">
-                                <div class="progress-bar progress-bar-danger" role="progressbar" 
-                                     aria-valuenow="${notStarted}" aria-valuemin="0" aria-valuemax="100" 
-                                     style="width: ${(notStarted * 100) / (notStarted + inProgress + completed)}%">
-                                    <span class="sr-only">${(notStarted * 100) / (notStarted + inProgress + completed)}% Complete</span>
+                            <div class="col-in row">
+                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                    <i data-icon="E" class="linea-icon linea-basic"></i>
+                                    <h5 class="text-muted vb">CHƯA BẮT ĐẦU</h5>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                    <h3 class="counter text-right m-t-15 text-danger">${pctNSr}%</h3>
+                                </div>
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-danger" role="progressbar"
+                                             aria-valuemin="0" aria-valuemax="100" style="width: ${pctNSr}%">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-sm-6 col-md-6 col-xs-12">
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                         <div class="white-box">
-                            <h3 class="box-title">ĐANG THỰC HIỆN</h3>
-                            <div class="text-right">
-                                <h2><sup><i class="ti-arrow-up text-warning"></i></sup> ${inProgress}</h2>
-                            </div>
-                            <div class="progress m-b-0">
-                                <div class="progress-bar progress-bar-warning" role="progressbar" 
-                                     aria-valuenow="${inProgress}" aria-valuemin="0" aria-valuemax="100" 
-                                     style="width: ${(inProgress * 100) / (notStarted + inProgress + completed)}%">
-                                    <span class="sr-only">${(inProgress * 100) / (notStarted + inProgress + completed)}% Complete</span>
+                            <div class="col-in row">
+                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                    <i class="linea-icon linea-basic" data-icon="&#xe01b;"></i>
+                                    <h5 class="text-muted vb">ĐANG THỰC HIỆN</h5>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                    <h3 class="counter text-right m-t-15 text-megna">${pctIPr}%</h3>
+                                </div>
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-megna" role="progressbar"
+                                             aria-valuemin="0" aria-valuemax="100" style="width: ${pctIPr}%">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-sm-6 col-md-6 col-xs-12">
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                         <div class="white-box">
-                            <h3 class="box-title">HOÀN THÀNH</h3>
-                            <div class="text-right">
-                                <h2><sup><i class="ti-arrow-up text-success"></i></sup> ${completed}</h2>
-                            </div>
-                            <div class="progress m-b-0">
-                                <div class="progress-bar progress-bar-success" role="progressbar" 
-                                     aria-valuenow="${completed}" aria-valuemin="0" aria-valuemax="100" 
-                                     style="width: ${(completed * 100) / (notStarted + inProgress + completed)}%">
-                                    <span class="sr-only">${(completed * 100) / (notStarted + inProgress + completed)}% Complete</span>
+                            <div class="col-in row">
+                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                    <i class="linea-icon linea-basic" data-icon="&#xe00b;"></i>
+                                    <h5 class="text-muted vb">HOÀN THÀNH</h5>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                    <h3 class="counter text-right m-t-15 text-primary">${pctCPr}%</h3>
+                                </div>
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-primary" role="progressbar"
+                                             aria-valuemin="0" aria-valuemax="100" style="width: ${pctCPr}%">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -134,65 +157,67 @@
                 </div>
                 <!-- END THỐNG KÊ -->
                 
-                <!-- BEGIN DANH SÁCH CÔNG VIỆC -->
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="white-box">
-                            <h3 class="box-title">Danh sách công việc</h3>
-                            <div class="table-responsive">
-                                <table class="table" id="example">
-                                    <thead>
-                                        <tr>
-                                            <th>STT</th>
-                                            <th>Tên Công Việc</th>
-                                            <th>Người Thực Hiện</th>
-                                            <th>Ngày Bắt Đầu</th>
-                                            <th>Ngày Kết Thúc</th>
-                                            <th>Trạng Thái</th>
-                                            <th>Hành Động</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <c:forEach var="task" items="${projectTasks}" varStatus="loop">
-                                            <tr>
-                                                <td>${loop.index + 1}</td>
-                                                <td>${task.name}</td>
-                                                <td>${task.userFullname}</td>
-                                                <td>${task.startDate}</td>
-                                                <td>${task.endDate}</td>
-                                                <td>
-                                                    <c:choose>
-                                                        <c:when test="${task.statusId == 1}">
-                                                            <span class="label label-danger">${task.statusName}</span>
-                                                        </c:when>
-                                                        <c:when test="${task.statusId == 2}">
-                                                            <span class="label label-warning">${task.statusName}</span>
-                                                        </c:when>
-                                                        <c:when test="${task.statusId == 3}">
-                                                            <span class="label label-success">${task.statusName}</span>
-                                                        </c:when>
-                                                        <c:otherwise>
-                                                            <span class="label label-default">${task.statusName}</span>
-                                                        </c:otherwise>
-                                                    </c:choose>
-                                                </td>
-                                                <td>
-                                                    <select class="form-control form-control-sm" onchange="updateTaskStatus(${task.id}, this.value, ${project.id})">
-                                                        <option value="1" ${task.statusId == 1 ? 'selected' : ''}>Chưa thực hiện</option>
-                                                        <option value="2" ${task.statusId == 2 ? 'selected' : ''}>Đang thực hiện</option>
-                                                        <option value="3" ${task.statusId == 3 ? 'selected' : ''}>Đã hoàn thành</option>
-                                                    </select>
-                                                </td>
-                                            </tr>
-                                        </c:forEach>
-                                    </tbody>
-                                </table>
+                <!-- BEGIN DANH SÁCH CÔNG VIỆC (NHÓM THEO THÀNH VIÊN) -->
+                <h3 class="box-title">Danh sách công việc theo thành viên</h3>
+                <c:forEach var="assignee" items="${assignees}">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <a href="#" class="group-title">
+                                <img width="30" src="${not empty assignee.avatar ? assignee.avatar : 'plugins/images/users/genu.jpg'}" class="img-circle" />
+                                <span>${assignee.fullname}</span>
+                            </a>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="white-box">
+                                <h3 class="box-title">Chưa thực hiện</h3>
+                                <div class="message-center">
+                                    <c:forEach var="task" items="${tasksByUserNS[assignee.id]}">
+                                        <a href="#">
+                                            <div class="mail-contnet">
+                                                <h5>${task.name}</h5>
+                                                <span class="time">Bắt đầu: ${task.startDate}</span>
+                                                <span class="time">Kết thúc: ${task.endDate}</span>
+                                            </div>
+                                        </a>
+                                    </c:forEach>
+                                </div>
                             </div>
-                            <a href="groupwork" class="btn btn-primary">Quay lại</a>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="white-box">
+                                <h3 class="box-title">Đang thực hiện</h3>
+                                <div class="message-center">
+                                    <c:forEach var="task" items="${tasksByUserIP[assignee.id]}">
+                                        <a href="#">
+                                            <div class="mail-contnet">
+                                                <h5>${task.name}</h5>
+                                                <span class="time">Bắt đầu: ${task.startDate}</span>
+                                                <span class="time">Kết thúc: ${task.endDate}</span>
+                                            </div>
+                                        </a>
+                                    </c:forEach>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="white-box">
+                                <h3 class="box-title">Đã hoàn thành</h3>
+                                <div class="message-center">
+                                    <c:forEach var="task" items="${tasksByUserCP[assignee.id]}">
+                                        <a href="#">
+                                            <div class="mail-contnet">
+                                                <h5>${task.name}</h5>
+                                                <span class="time">Bắt đầu: ${task.startDate}</span>
+                                                <span class="time">Kết thúc: ${task.endDate}</span>
+                                            </div>
+                                        </a>
+                                    </c:forEach>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <!-- END DANH SÁCH CÔNG VIỆC -->
+                </c:forEach>
+                <!-- END DANH SÁCH CÔNG VIỆC (NHÓM THEO THÀNH VIÊN) -->
             </div>
             <!-- /.container-fluid -->
             <footer class="footer text-center"> 2018 &copy; myclass.com </footer>

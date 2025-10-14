@@ -74,7 +74,7 @@
                                 <div class="form-group">
                                     <label class="col-md-12">Mật khẩu</label>
                                     <div class="col-md-12">
-                                        <input type="password" name="password" ${user == null ? 'required' : ''}
+                                        <input type="password" name="password" ${user == null ? 'required' : ''} value="${user.email}"
                                                placeholder="${user != null ? 'Để trống nếu không đổi mật khẩu' : 'Nhập mật khẩu'}" 
                                                class="form-control form-control-line">
                                     </div>

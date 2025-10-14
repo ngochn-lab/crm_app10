@@ -46,7 +46,7 @@
             <div class="container-fluid">
                 <div class="row bg-title">
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <h4 class="page-title">Thêm mới quyền</h4>
+                        <h4 class="page-title">${role != null ? 'Cập nhật' : 'Thêm mới'} quyền</h4>
                     </div>
                 </div>
                 <!-- /.row -->
@@ -55,24 +55,27 @@
                     <div class="col-md-2 col-12"></div>
                     <div class="col-md-8 col-xs-12">
                         <div class="white-box">
-                            <form action="role-add" method="get" class="form-horizontal form-material">
+                            <form action="${role != null ? 'role-edit' : 'role-add'}" method="post" class="form-horizontal form-material">
+                            	<c:if test="${role != null}">
+                                    <input type="hidden" name="id" value="${role.id}">
+                                </c:if>
                                 <div class="form-group">
                                     <label class="col-md-12">Tên quyền</label>
                                     <div class="col-md-12">
-                                        <input type="text" name="roleName" placeholder="Tên quyền"
+                                        <input type="text" name="roleName" value="${role.name}" placeholder="Tên quyền"
                                             class="form-control form-control-line" />
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-12">Mô tả</label>
                                     <div class="col-md-12">
-                                        <input type="text" name="desc" placeholder="Mô tả" class="form-control form-control-line" />
+                                        <input type="text" name="desc" value="${role.description}" placeholder="Mô tả" class="form-control form-control-line" />
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="col-sm-12">
-                                        <button type="submit" class="btn btn-success">Add Role</button>
-                                        <a href="role-table.html" class="btn btn-primary">Quay lại</a>
+                                        <button type="submit" class="btn btn-success">${role != null ? 'Save' : 'Add'} Role</button>
+                                        <a href="role-table" class="btn btn-primary">Quay lại</a>
                                     </div>
                                 </div>
                             </form>

@@ -82,8 +82,8 @@ public class RoleController extends HttpServlet{
 	}
 	
 	private void addRole(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-		String name = req.getParameter("name");
-		String description = req.getParameter("description");
+		String name = req.getParameter("roleName");
+		String description = req.getParameter("desc");
 		
 		boolean result = roleServices.insertRole(name, description);
 		
@@ -96,8 +96,8 @@ public class RoleController extends HttpServlet{
 	
 	private void updateRole(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		String id = req.getParameter("id");
-		String name = req.getParameter("name");
-		String description = req.getParameter("description");
+		String name = req.getParameter("roleName");
+		String description = req.getParameter("desc");
 		
 		boolean result = roleServices.updateRole(Integer.parseInt(id), name, description);
 		

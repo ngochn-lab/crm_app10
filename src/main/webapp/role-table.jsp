@@ -51,7 +51,7 @@
                         <h4 class="page-title">Danh sách quyền</h4>
                     </div>
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12 text-right">
-                        <a href="role-add.html" class="btn btn-sm btn-success">Thêm mới</a>
+                        <a href="role-add" class="btn btn-sm btn-success">Thêm mới</a>
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
@@ -76,8 +76,8 @@
 	                                            <td>${item.name}</td>
 	                                            <td>${item.description}</td>
 	                                            <td>
-	                                                <a href="#" class="btn btn-sm btn-primary">Sửa</a>
-	                                                <a href="#" class="btn btn-sm btn-danger">Xóa</a>
+	                                                <a href="role-edit?id=${item.id}" class="btn btn-sm btn-primary">Sửa</a>
+	                                                <a href="role-delete?id=${item.id}" class="btn btn-sm btn-danger">Xóa</a>
 	                                            </td>
 	                                        </tr>
                                     	</c:forEach>

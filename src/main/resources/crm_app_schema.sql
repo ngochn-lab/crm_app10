@@ -1,4 +1,3 @@
--- Create database
 CREATE DATABASE IF NOT EXISTS crm_app;
 USE crm_app;
 
@@ -80,33 +79,23 @@ INSERT INTO users(email, password, fullname, avatar, role_id) VALUES
     ('manager1@gmail.com', '123456', 'Quản Lý Dự Án 1', 'https://gravatar.com/avatar/e799da9a2398eb8601d0bd3847433fc9?s=400&d=robohash&r=x', 2),
     ('manager2@gmail.com', '123456', 'Quản Lý Dự Án 2', 'https://gravatar.com/avatar/017f06f6e48b8efb18e87af8df6af767?s=400&d=robohash&r=x', 2),
     ('member1@gmail.com', '123456', 'Thành Viên 1', 'https://gravatar.com/avatar/bd4976bc09262c06dd86334fd84115a9?s=400&d=robohash&r=x', 3),
-    ('member2@gmail.com', '123456', 'Thành Viên 2', NULL, 3),
-    ('member3@gmail.com', '123456', 'Thành Viên 3', NULL, 3);
+    ('member2@gmail.com', '123456', 'Thành Viên 2', 'https://gravatar.com/avatar/bd4976bc09262c06dd86334fd84115a9?s=400&d=robohash&r=x', 3),
+    ('member3@gmail.com', '123456', 'Thành Viên 3', 'https://gravatar.com/avatar/bd4976bc09262c06dd86334fd84115a9?s=400&d=robohash&r=x', 3);
 
 -- Insert sample projects (optional - uncomment if needed)
 INSERT INTO projects(name, start_date, end_date, user_id) VALUES
-    ('CRM Application', '2025-09-09', '2025-12-31', 1),
+    ('CRM Application', '2025-09-09', '2025-12-31', 2),
     ('E-commerce Website', '2025-02-01', '2026-08-31', 2),
-    ('Azure Cloud Middleware', '2025-10-20', '2028-08-31', 2);
+    ('Azure Cloud Middleware', '2025-10-20', '2028-08-31', 3);
 
 -- Insert sample tasks (optional - uncomment if needed)
 INSERT INTO tasks(name, start_date, end_date, user_id, project_id, status_id) VALUES
-    ('Database Design', '2025-01-01', '2024-01-15', 3, 1, 3),
-    ('Backend Development', '2025-01-16', '2024-03-31', 3, 1, 2),
-    ('Frontend Development', '2025-02-01', '2024-04-30', 3, 1, 1),
-    ('Database Design', '2025-01-01', '2024-01-15', 3, 2, 3),
-    ('Backend Development', '2025-01-16', '2024-03-31', 3, 2, 2),
-    ('Frontend Development', '2025-02-01', '2024-04-30', 3, 2, 1),
-    ('Database Design', '2025-10-21', '2024-01-15', 3, 3, 3),
-    ('Backend Development', '2025-11-16', '2024-03-31', 3, 3, 2),
-    ('Frontend Development', '2026-01-01', '2024-04-30', 3, 3, 1);
-
--- Useful queries for testing
--- SELECT * FROM roles;
--- SELECT * FROM status;
--- SELECT * FROM users u JOIN roles r ON u.role_id = r.id;
--- SELECT * FROM projects p JOIN users u ON p.user_id = u.id;
--- SELECT * FROM tasks t 
---     JOIN users u ON t.user_id = u.id
---     JOIN projects p ON t.project_id = p.id
---     JOIN status s ON t.status_id = s.id;
+    ('Database Design', '2025-01-01', '2026-01-15', 4, 1, 3),
+    ('Backend Development', '2025-01-16', '2027-03-31', 4, 1, 2),
+    ('Frontend Development', '2025-02-01', '2027-04-30', 5, 1, 1),
+    ('Database Design', '2025-01-01', '2027-01-15', 6, 2, 3),
+    ('Backend Development', '2025-01-16', '2027-03-31', 6, 2, 2),
+    ('Frontend Development', '2025-02-01', '2029-04-30', 5, 2, 1),
+    ('Database Design', '2025-10-21', '2026-01-15', 4, 3, 3),
+    ('Backend Development', '2025-11-16', '2026-03-31', 4, 3, 2),
+    ('Frontend Development', '2026-01-01', '2027-04-30', 5, 3, 1);
